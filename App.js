@@ -1,14 +1,15 @@
 import React,{useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,ScrollView,FlatList } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import {NavBar} from './src/components/Navbar';
 import { MainScreen } from './src/screens/MainScreen';
-import { TodoScreen } from './src/screens/TodoScreen';
+import {TodoScreen} from "./src/screens/TodoScreen";
+
+
 
 export default function App() {
-
 const [todos,setTodos] = useState([]);
-const [todId,setTodoId] = useState(null);
+const [todoId,setTodoId] = useState(null);
 
 const addTodo = (title) =>{
   setTodos(prev => [{
@@ -23,10 +24,18 @@ const addTodo = (title) =>{
     setTodos(prev => prev.filter(todo => todo.id !== id))
   }
 
-  let content = <MainScreen todos={todos} addTodo={addTodo} removeTodo={removeTodo} />
+  let content = (
+    <MainScreen
+      todos={todos}
+      addTodo={addTodo}
+      removeTodo={removeTodo}
+      openTodo={setTodoId}
+    />
+  )
 
-  if(todId){
-    content = <TodoScreen />
+  if(todoId){
+     const selectedTodo = todos.find(todo => todo.id === todoId);
+     content = <TodoScreen goBack={()=>setTodoId(null)} todo={selectedTodo}/>
   }
   
   return (

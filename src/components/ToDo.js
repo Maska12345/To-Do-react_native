@@ -3,14 +3,14 @@ import {View,Text,StyleSheet,TouchableOpacity} from 'react-native';
 
 
 
-export const ToDo = ({todo,onRemove}) =>{
+export const ToDo = ({todo,onRemove,onOpen}) =>{
     
     const longPressHandler = () =>{
         onRemove(todo.id)
     }
     return(
     <TouchableOpacity
-     onPress={()=>console.log('tuched',todo.id)}
+     onPress={()=> onOpen(todo.id)}
      onLongPress={longPressHandler}
      >
          <View style={styles.todo}>

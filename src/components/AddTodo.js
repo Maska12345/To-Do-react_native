@@ -24,7 +24,7 @@ const PressHandler = () =>{
             style={styles.input}
             onChangeText={setValue} 
             value={value}
-            placeholder="Add new task"
+            placeholder="Add a new task"
             />
             <Button style={styles.but} title="add" onPress={PressHandler}/> 
         </View>

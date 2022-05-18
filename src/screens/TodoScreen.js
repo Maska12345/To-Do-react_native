@@ -1,19 +1,14 @@
 import React from 'react'
-import {View,StyleSheet,FlatList} from 'react-native'
-import {AddTodo} from '../components/AddTodo'
-import {ToDo} from '../components/ToDo'
+import {View,StyleSheet,Button,Text} from 'react-native'
 
 
 
-export const MainScreen=(todos,addTodo,removeTodo)=>{
+
+export const TodoScreen=({goBack,todo})=>{
     return(
         <View>
-              <AddTodo onSubmit={addTodo} />
-              <FlatList
-              keyExtractor={item => item.id.toString()}
-              data={todos}
-              renderItem={({item}) => <ToDo todo={item} onRemove={removeTodo}/>}
-              />
+            <Text>{todo.title}</Text>
+            <Button title={'Back'} onPress={goBack} />
         </View>
     )
 

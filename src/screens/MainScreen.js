@@ -5,14 +5,15 @@ import {ToDo} from '../components/ToDo'
 
 
 
-export const MainScreen=({todos,addTodo,removeTodo})=>{
+
+export const MainScreen=({todos,addTodo,removeTodo,openTodo})=>{
     return(
         <View>
              <AddTodo onSubmit={addTodo} />
             <FlatList
             keyExtractor={item => item.id.toString()}
             data={todos}
-            renderItem={({item}) => <ToDo todo={item} onRemove={removeTodo}/>}
+            renderItem={({item}) => <ToDo todo={item} onRemove={removeTodo} onOpen={openTodo}/>}
             />
         </View>
     )
