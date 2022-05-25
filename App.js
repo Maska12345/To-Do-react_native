@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
 import {NavBar} from './src/components/Navbar';
 import { MainScreen } from './src/screens/MainScreen';
 import {TodoScreen} from "./src/screens/TodoScreen";
@@ -21,7 +21,29 @@ const addTodo = (title) =>{
   )
   }
   const removeTodo = id => {
-    setTodos(prev => prev.filter(todo => todo.id !== id))
+      const todo = todos.find(t => t.id === id);
+      Alert.alert(
+          "Remove element",
+          `${todo.title} will be deleted`,
+          [
+              {
+                  text: "Cancel",
+                  style: "cancel",
+              },
+              {
+                  text: "Remove",
+                  onPress : () =>{
+                      setTodoId(null);
+                      setTodos(prev => prev.filter(todo => todo.id !== id))
+                  }
+              }
+          ],
+          {
+              cancelable: false,
+
+          }
+      );
+
   }
 
   let content = (
@@ -35,7 +57,7 @@ const addTodo = (title) =>{
 
   if(todoId){
      const selectedTodo = todos.find(todo => todo.id === todoId);
-     content = <TodoScreen goBack={()=>setTodoId(null)} todo={selectedTodo}/>
+     content = <TodoScreen onRemove={removeTodo} goBack={()=>setTodoId(null)} todo={selectedTodo}/>
   }
   
   return (
