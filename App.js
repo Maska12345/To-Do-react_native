@@ -11,6 +11,15 @@ export default function App() {
 const [todos,setTodos] = useState([]);
 const [todoId,setTodoId] = useState(null);
 
+const updateTodo = (id,title) =>{
+    setTodos(old => old.map(todo =>{
+        if(todo.id === id){
+            todo.title = title
+        }
+        return todo;
+    }) )
+}
+
 const addTodo = (title) =>{
   setTodos(prev => [{
         id:Date.now().toString(),
@@ -57,7 +66,7 @@ const addTodo = (title) =>{
 
   if(todoId){
      const selectedTodo = todos.find(todo => todo.id === todoId);
-     content = <TodoScreen onRemove={removeTodo} goBack={()=>setTodoId(null)} todo={selectedTodo}/>
+     content = <TodoScreen onSave={updateTodo} onRemove={removeTodo} goBack={()=>setTodoId(null)} todo={selectedTodo}/>
   }
   
   return (
