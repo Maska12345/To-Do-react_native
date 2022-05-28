@@ -10,7 +10,7 @@ export const TodoScreen=({goBack,todo,onRemove,onSave})=>{
     const [modal, setModal]=useState(false);
 
     const saveHandler = (title) =>{
-        onSave(id,title);
+        onSave(todo.id,title);
         setModal(false);
     }
 
