@@ -1,15 +1,20 @@
 import React,{useState} from 'react';
-import { StatusBar } from 'expo-status-bar';
+import * as Font from 'expo-font';
 import { StyleSheet, View, Alert } from 'react-native';
+import {AppLoading} from 'expo-app-loading';
+
+import { StatusBar } from 'expo-status-bar';
 import {NavBar} from './src/components/Navbar';
 import { MainScreen } from './src/screens/MainScreen';
 import {TodoScreen} from "./src/screens/TodoScreen";
 
 
 
+
 export default function App() {
-const [todos,setTodos] = useState([]);
-const [todoId,setTodoId] = useState(null);
+    const [todos,setTodos] = useState([]);
+    const [todoId,setTodoId] = useState(null);
+
 
 const updateTodo = (id,title) =>{
     setTodos(old => old.map(todo =>{
